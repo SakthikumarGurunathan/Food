@@ -1,0 +1,206 @@
+
+Body{
+    margin-top:150px;
+    width: 100%;
+}
+.body-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 80%;
+    margin-left: auto;
+    margin-right: auto;
+    font-family:'regular';
+}
+.vertical-line{
+    border: 1px solid rgb(240, 240, 245);
+    margin: 32px calc(10% + 52px);
+    width: 100%;
+}
+/* Arrow container of carousal */
+
+.button-carousal-scroll-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 14px;
+}
+.button-carousal-scroll-container button{
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    display: inline;
+    margin: 0px;
+    padding: 0px;    
+    border-radius: 100%;
+    padding: 8px 8px 4px;
+    background: rgb(226, 226, 231);
+}
+.button-carousal-scroll-container h1{
+    font-family:'bold';
+    font-size: 24px;
+}
+.carousal-button-container{
+    display: flex;
+    gap: 4px;
+}
+.carousal-button-container > button > svg{
+    background: transparent;
+}
+/* Main carousal */
+.carousal-container{
+    display: flex;
+    overflow: scroll hidden;
+    width: 100%;
+    margin-bottom: 24px;
+    font-family: 'regular';
+
+}
+.carousal-container::-webkit-scrollbar{
+    display: none;
+}
+.carousal-head-container{
+    margin-top: 24px;
+}
+.main-carousal-items:first-child{
+    padding-left: 16px;
+}
+.main-carousal-items{
+    padding-right: 16px;
+}
+.main-carousal-img{
+    width: 445px;
+}
+.second-carousal-img{
+    width: 144px;
+    height: 180px;
+}
+.third-carousal-img{
+    width: 272px;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    border-radius: 24px;
+}
+
+/* Shimmer */
+  
+  .card {
+      position: relative;
+      -webkit-box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      box-shadow: 0 6px 8px rgba(0, 0, 0, 0.1);
+      background-color: #FFF;
+      border-radius: 6px;
+      height: 200px;
+      overflow: hidden;
+      width: 200px;
+      margin: 40px auto;
+    
+    .shimmerBG {
+      animation-duration: 2.2s;
+      animation-fill-mode: forwards;
+      animation-iteration-count: infinite;
+      animation-name: shimmer;
+      animation-timing-function: linear;
+      background: #ddd;
+      background: linear-gradient(to right, #F6F6F6 8%, #F0F0F0 18%, #F6F6F6 33%);
+      background-size: 1200px 100%;
+  }
+  
+  
+  @-webkit-keyframes shimmer {
+      0% {
+          background-position: -100% 0;
+      }
+      100% {
+          background-position: 100% 0;
+      }
+  }
+  
+  @keyframes shimmer {
+      0% {
+          background-position: -1200px 0;
+      }
+      100% {
+          background-position: 1200px 0;
+      }
+  }
+    
+      .media {
+      height: 200px;
+  }
+  
+  .p-32 {
+      padding: 32px;
+  }
+  
+  .title-line {
+      height: 24px;
+      width: 100%;
+      margin-bottom: 12px;
+      border-radius: 20px;
+  }
+  
+  .content-line {
+      height: 8px;
+      width: 100%;
+      margin-bottom: 16px;
+      border-radius: 8px;
+  }
+    
+    .end {
+        width: 40%;
+      }
+  
+  }
+  .m-t-24 {
+      margin-top: 24px;
+  }
+
+  /* Restaurant Cards */
+
+.res-card-container-parent{
+    width: 100%;
+}
+.res-card-container{
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); /* Responsive columns */
+    gap: 20px; /* Gap between grid items */
+    padding: 12px;
+    place-items: center;
+    margin-left:auto;
+    margin-right: auto;
+    text-overflow: ellipsis;
+    color: rgba(2, 6, 12, 0.75);
+    overflow: hidden;
+}
+.res-card{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+.res-data-img{
+    width: 100%;
+    aspect-ratio: 3/2;
+    object-fit: cover;
+    border-radius: 24px;
+}
+.cuisine,.res-name{
+    overflow: hidden;
+    width: 100%;
+    display: -webkit-box;
+    overflow-wrap: break-word;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+}
+@media(min-width:0px) and (max-width:600px){
+    .res-card-container{
+        grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Responsive columns */
+    }
+}
+@media(min-width:1024px){
+    .res-card-container{
+        grid-template-columns:1fr 1fr 1fr 1fr ; /* Responsive columns */
+
+    }
+}

@@ -1,0 +1,24 @@
+*,::after,::before{
+    margin: 0;
+    background:white;
+  }
+  @font-face {
+    font-family: 'regular';   /*Can be any text*/
+    src: local("BasicGrotesqueArabicPro-regular"),
+      url("./fonts/BasisGrotesqueArabicPro-Regular.ttf") format("truetype");
+  }
+  @font-face {
+    font-family: 'bold';   /*Can be any text*/
+    src: local("BasicGrotesqueArabicPro-Bold"),
+      url("./fonts/BasisGrotesqueArabicPro-Bold.ttf") format("truetype");
+  }
+
+  @font-face {
+    font-family: 'proxima';   /*Can be any text*/
+    src: local("Proxima-nova"),
+      url("./fonts/FontsFree-Net-proxima_nova_reg-webfont.ttf") format("truetype");
+  }
+  a{
+    text-decoration: none;
+    color: inherit;
+  }

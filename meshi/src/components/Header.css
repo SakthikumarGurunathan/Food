@@ -1,0 +1,38 @@
+li{
+    list-style: none;
+}
+nav{
+    padding: 8px 16px;
+    box-shadow: 0 15px 40px -20px rgba(40,44,63,.15);
+    background: #fff;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding-left: 0;
+    z-index: 9999;
+    font-family: "proxima";}
+.nav-bar{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 0;
+    height: 80px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 95%;
+}
+.nav-bar >li > img{
+    width: 50px;
+}
+.nav-bar-child{
+    display: flex;
+    padding-left: 0;
+    gap: 16px;
+}
+
+.nav-bar-item{
+    display: flex;
+    gap: 8px;
+}
