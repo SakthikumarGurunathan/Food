@@ -193,6 +193,48 @@ Body{
     -webkit-line-clamp: 1;
     -webkit-box-orient: vertical;
 }
+
+/* Restaurant Menu */
+.restaurant-whole-container{
+    max-width: 800px;
+    min-height: 800px;
+    margin: 20px auto 0;
+    font-family:'proxima';
+}
+.menu-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 4px 12px;
+    align-items: center;
+    margin-bottom: 18px;
+}
+.hotel-name{
+    font-weight: 600;
+    color: #282c3f;
+    margin-bottom: 8px;
+}
+p.hotel-details{
+    color: #7e808c;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-bottom: 4px;
+    white-space: nowrap;
+}
+.rating{
+    border: 1px solid #e9e9eb;
+    box-shadow: 0 1px 5px #f9f9f9;
+    border-radius: 6px;
+    text-align: center;
+    padding: 12px 4px;
+    max-width: 100px;
+}
+
+.time-cost-wrap{
+    color: #3e4152;
+    font-size: 15px;
+    font-weight: 700;
+}
+
 @media(min-width:0px) and (max-width:600px){
     .res-card-container{
         grid-template-columns: repeat(auto-fill, minmax(125px, 1fr)); /* Responsive columns */
