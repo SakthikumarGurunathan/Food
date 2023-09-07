@@ -233,6 +233,46 @@ p.hotel-details{
     color: #3e4152;
     font-size: 15px;
     font-weight: 700;
+    margin-top: 12px;
+}
+.offer-container-parent{
+    overflow: scroll;
+}
+.offer-container-parent::-webkit-scrollbar{
+    display: none;
+}   
+.offer-desc-coup{
+    font-size: 12px;
+    color: #93959f;
+    font-weight: 700;
+    margin-top: 4px;
+}
+.desc-vertical-line{
+    height: 12px;
+    width: 2px;
+    background-color:#93959f;
+}
+.offer-header{
+    color:#686b78;
+    font-size: 14px;
+    font-weight: 600;
+}
+.offer-container{
+    display: flex;
+    flex-direction: column;
+    border: 1px solid #e9e9eb;
+    box-sizing: border-box;
+    box-shadow: 0 1px 2px rgba(0,0,0,.04);
+    border-radius: 8px;
+    padding: 10px;
+    height: 100%;
+    cursor: pointer;
+}
+.style-divider{
+    border-bottom: 0.5px solid #d3d3d3;
+    height: 0.5px;
+    margin: 24px auto;
+    width: calc(100% - 32px);
 }
 
 @media(min-width:0px) and (max-width:600px){
