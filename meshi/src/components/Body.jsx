@@ -30,7 +30,6 @@ useEffect(()=>{
         setFilteredRestaurant(datas.data.cards[2].card.card.gridElements.infoWithStyle.restaurants)
     })
 },[])
-console.log(thirdCarousal)
     return(
         <div className='body-container'>
         {mainCarousal.length === 0 ? <h1>Hi frands</h1>:<MainCarousal mainCarousal={mainCarousal} Class={"main-carousal-img"}/> }
@@ -48,7 +47,6 @@ console.log(thirdCarousal)
                         setFilteredRestaurant(data)
                     }}>Search</button>
                 </div> */}
-                
                 <div className='res-card-container'>
                     {filteredRestaurant.length>0?
                     filteredRestaurant.map((restaurant)=>{

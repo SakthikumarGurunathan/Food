@@ -41,6 +41,9 @@
 .mt-12{
     margin-top: 12px;
 }
+.mt-14{
+    margin-top: 14px;
+}
 .mt-16{
     margin-top: 16px;
 }
@@ -259,6 +262,9 @@
 }
 .pb-8{
     padding-bottom: 8px;
+}
+.pb-14{
+    padding-bottom: 14px;
 }
 .pb-16{
     padding-bottom: 16px;

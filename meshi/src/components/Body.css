@@ -268,12 +268,32 @@ p.hotel-details{
     height: 100%;
     cursor: pointer;
 }
+.menu-header{
+    color: #3e4152;
+    font-weight: 800;
+    font-size: 18px;
+}
+.each-menu-item {
+    margin-right: 4px;
+    font-size: 18px;
+    font-weight: 500;
+    color: #3e4152;
+    word-break: break-word;
+}
+.menu-item-desc{
+    line-height: 1.3;
+    color: #282c3f73;
+    letter-spacing: -.3px;
+    font-size: 14px;
+    font-weight: 400;
+}
 .style-divider{
     border-bottom: 0.5px solid #d3d3d3;
     height: 0.5px;
     margin: 24px auto;
-    width: calc(100% - 32px);
+    width: 100%;
 }
+
 
 @media(min-width:0px) and (max-width:600px){
     .res-card-container{

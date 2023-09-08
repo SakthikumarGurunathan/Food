@@ -51,7 +51,7 @@ export default function RestaurantMenu(){
                             <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${each.info.offerLogo}`} alt="" width={20} height={20}/>
                             <p className='offer-header'>{each.info.header}</p>
                         </div>
-                        <div className='d-flex align-center gap-4 ' style={{minWidth: "200px"}}>
+                        <div className='d-flex align-center gap-4 ' style={{minWidth: "220px"}}>
                             <p className='offer-desc-coup'>{each.info.couponCode}</p>
                             <div className='desc-vertical-line offer-desc-coup'></div>
                             <p className='offer-desc-coup' style={{marginTop:"3px",marginBottom:"-2px"}}>{each.info.description}</p>
@@ -63,27 +63,47 @@ export default function RestaurantMenu(){
                 </div>
                 <div className='style-divider'></div>
                 <div className='main-dishes-container'>
-                    <div className='recommended'>
-                    
+                    <div className='recommended' >
                         {
                         restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each)=>{
-                                return <div>
-                                    <p>{each?.card?.card?.title}</p>
-                                </div> 
+                                return( <>
+                                    {each?.card?.card?.itemCards?.length>0&&
+                                    <>
+                                    <div className='d-flex justify-space-between'>
+                                    <div>
+                                    {<p className='menu-header'>{each?.card?.card?.title} ({each?.card?.card?.itemCards?.length})</p>
+                                    }
+                                    </div>
+                                    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g id="feArrowDown0" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="feArrowDown1" fill="#3e4152"><path id="feArrowDown2" d="m6 7l6 6l6-6l2 2l-8 8l-8-8z"/></g></g></svg></p>
+                                </div>
+                                <div style={{marginBottom:"24px",marginTop:"24px"}}>
+                                    {each?.card?.card?.itemCards?.map((each)=>{
+                                        return(
+                                            <>
+                                        <div className='d-flex justify-space-between'>
+                                            <div className='pb-14'>
+                                                {each.card.info.isVeg?<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="#0f8a65" d="M20 4v16H4V4h16m2-2H2v20h20V2M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6Z"/></svg>:<svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24"><path fill="#e43b4f" d="M20 4v16H4V4h16m2-2H2v20h20V2M12 6c-3.31 0-6 2.69-6 6s2.69 6 6 6s6-2.69 6-6s-2.69-6-6-6Z"/></svg>}
+                                                <p className='each-menu-item'>{each.card.info.name}</p>
+                                                <p className='each-menu-item mt-4' style={{fontSize:"14px"}}>₹{each?.card?.info?.price/100 || each?.card?.info?.defaultPrice/100}</p>
+                                                <p className='mt-14 menu-item-desc'>{each?.card?.info?.description}</p>
+                                            </div>
+                                            <div>
+                                                {
+                                                each?.card?.info?.imageId&&<img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${each?.card?.info?.imageId}`} alt="" width={118} height={96} style={{borderRadius:"6px",objectFit:"cover"}}/>
+                                                }
+                                            </div>
+                                        </div>
+                                        <div className='style-divider'></div>
+                                        </>
+                                        
+                                        )
+                                    })}
+                                </div>
+                                </>
+                                } 
+                                </>
+                                )
                             })
-                        } 
-                        {
-                            restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each)=>{
-                                const lengthVar = each?.card?.card?.itemCards
-                                console.log(lengthVar?.length,"without")
-                            })
-
-                        }
-                        {
-                            restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each)=>{
-                                const lengthVar = each?.card?.card?.categories
-                                console.log(lengthVar,"cat")
-                            }) 
                         }
                     </div>
                 </div>
