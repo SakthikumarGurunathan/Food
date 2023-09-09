@@ -7,11 +7,21 @@ export default function RestaurantMenu(){
     const [restaurantMenu,setRestaurantMenu] = useState([])
     const {id} = useParams()
     // const [restaurantMenu,setRestaurantMenu] = useState()
+    const [openSections, setOpenSections] = useState(Array(restaurantMenu.length).fill(true));
+    console.log(openSections)
+    const toggleMenu = (sectionIndex) => {
+        setOpenSections(prevOpenSections => {
+          const updatedOpenSections = [...prevOpenSections];
+          updatedOpenSections[sectionIndex] = !updatedOpenSections[sectionIndex];
+          return updatedOpenSections;
+        });
+      };
+      
     useEffect(()=>{
         fetch(`https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=10.930515252798992&lng=76.9281879812479&restaurantId=${id}`)
         .then(res => res.json())
         .then(data => setRestaurantMenu(data.data.cards))
-    },[])
+    },[id])
     return(
         <>
          {
@@ -25,7 +35,7 @@ export default function RestaurantMenu(){
                 </div>
                 <div className='rating'>
                     <div style={{display:"flex",justifyContent:"center",gap:"4px",alignItems:"center",paddingBottom:"10px",borderBottom: '1px solid #e9e9eb',marginBottom:"8px"}}>
-                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512"><path fill="#3d9b6d" d="M496 203.3H312.36L256 32l-56.36 171.3H16l150.21 105.4l-58.5 171.3L256 373.84L404.29 480l-58.61-171.3Z"/></svg>
+                    <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 512 512" ><path fill="#3d9b6d" d="M496 203.3H312.36L256 32l-56.36 171.3H16l150.21 105.4l-58.5 171.3L256 373.84L404.29 480l-58.61-171.3Z"/></svg>
                     <p style={{color: "#3d9b6d",fontWeight:"700"}}>{restaurantMenu[0].card.card.info.avgRating}</p>
                     </div>
                     <p style={{color: "#8b8d97",fontWeight:"600",fontSize:"11px"}}>{restaurantMenu[0].card.card.info.totalRatingsString}</p>
@@ -65,18 +75,19 @@ export default function RestaurantMenu(){
                 <div className='main-dishes-container'>
                     <div className='recommended' >
                         {
-                        restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each)=>{
+                        restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each,index)=>{
                                 return( <>
                                     {each?.card?.card?.itemCards?.length>0&&
-                                    <>
-                                    <div className='d-flex justify-space-between'>
+                                <div key={each?.card?.card?.title}>
+                                <div className='d-flex justify-space-between' onClick={()=>toggleMenu(index)}>
                                     <div>
                                     {<p className='menu-header'>{each?.card?.card?.title} ({each?.card?.card?.itemCards?.length})</p>
                                     }
                                     </div>
-                                    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"><g id="feArrowDown0" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="feArrowDown1" fill="#3e4152"><path id="feArrowDown2" d="m6 7l6 6l6-6l2 2l-8 8l-8-8z"/></g></g></svg></p>
-                                </div>
-                                <div style={{marginBottom:"24px",marginTop:"24px"}}>
+                                    <p><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" style={{ transform:openSections[index]?"rotate(0deg)":"rotate(180deg)"}}><g id="feArrowDown0" fill="none" fill-rule="evenodd" stroke="none" stroke-width="1"><g id="feArrowDown1" fill="#3e4152"><path id="feArrowDown2" d="m6 7l6 6l6-6l2 2l-8 8l-8-8z"/></g></g></svg></p>
+                                </div> 
+                                {
+                                openSections[index]||openSections.length>= 0&& (<div style={{marginBottom:"24px",marginTop:"24px",}}>
                                     {each?.card?.card?.itemCards?.map((each)=>{
                                         return(
                                             <>
@@ -87,10 +98,21 @@ export default function RestaurantMenu(){
                                                 <p className='each-menu-item mt-4' style={{fontSize:"14px"}}>₹{each?.card?.info?.price/100 || each?.card?.info?.defaultPrice/100}</p>
                                                 <p className='mt-14 menu-item-desc'>{each?.card?.info?.description}</p>
                                             </div>
-                                            <div>
+                                            <div style={{position:"relative",width:"118px",height:"96px"}}>
                                                 {
                                                 each?.card?.info?.imageId&&<img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${each?.card?.info?.imageId}`} alt="" width={118} height={96} style={{borderRadius:"6px",objectFit:"cover"}}/>
                                                 }
+                                                {
+                                                    <div className={each?.card?.info?.imageId? 'menu-cart': 'menu-cart-no-img'}>
+                                                        <div className='d-flex flex-column justify-center align-center' style={{height:"100%",cursor:"pointer",borderRadius:"4px"}}>
+                                                            <p style={{color:" #60b246",fontWeight:"600",fontSize:"12px"}}>ADD</p>
+                                                            <div></div>
+                                                        </div>
+                                                    </div>   
+                                                }
+                                                
+                                                
+                                                
                                             </div>
                                         </div>
                                         <div className='style-divider'></div>
@@ -98,8 +120,10 @@ export default function RestaurantMenu(){
                                         
                                         )
                                     })}
-                                </div>
-                                </>
+                                </div>)
+                                }
+                            <div className='main-divider'></div>
+                            </div>
                                 } 
                                 </>
                                 )
