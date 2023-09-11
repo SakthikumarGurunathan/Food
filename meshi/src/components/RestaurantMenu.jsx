@@ -8,7 +8,6 @@ export default function RestaurantMenu(){
     const {id} = useParams()
     // const [restaurantMenu,setRestaurantMenu] = useState()
     const [openSections, setOpenSections] = useState(Array(restaurantMenu.length).fill(true));
-    console.log(openSections)
     const toggleMenu = (sectionIndex) => {
         setOpenSections(prevOpenSections => {
           const updatedOpenSections = [...prevOpenSections];
@@ -110,14 +109,10 @@ export default function RestaurantMenu(){
                                                         </div>
                                                     </div>   
                                                 }
-                                                
-                                                
-                                                
                                             </div>
                                         </div>
                                         <div className='style-divider'></div>
                                         </>
-                                        
                                         )
                                     })}
                                 </div>)
