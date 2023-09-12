@@ -5,6 +5,7 @@ import RestaurantCard from './RestaurantCard'
 import Shimmer from './Shimmer'
 import MainCarousal from './MainCarousal'
 import RestaurantMenu from './RestaurantMenu'
+import Cart from './Cart'
 
 function filterData(searchInput,allrestaurant){
     const filteredData = allrestaurant.filter((restaurant)=>restaurant.info.name.toLowerCase().includes(searchInput.toLowerCase()))
@@ -55,7 +56,6 @@ useEffect(()=>{
                 }
                 
         </div>
-       
         </div>
         }
         </div>

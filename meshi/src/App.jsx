@@ -8,20 +8,19 @@ import { Routes,Route } from 'react-router-dom'
 import RestaurantMenu from './components/RestaurantMenu'
 import { Provider } from 'react-redux'
 import store from './store'
+import Cart from './components/Cart'
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
     <Provider store={store}>
         <Header />
         <Routes>
+          <Route path='/cart' element={<Cart/>} />
           <Route path='/' element={<Body/>} />
           <Route path='/restaurantMenu/:id' element={<RestaurantMenu />} />
         </Routes>
         <Footer/>
-        
-      
     </Provider>
   )
 }

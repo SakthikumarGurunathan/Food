@@ -2,8 +2,33 @@ import './Body.css'
 import './style.css'
 import { useState,useEffect } from "react"
 import { useParams } from "react-router-dom"
+import { useSelector, useDispatch } from 'react-redux';
+import { addToCart } from '../cartSlice';
 
 export default function RestaurantMenu(){
+    const dispatch = useDispatch();
+    const cartItems = useSelector((state) => state.cart);
+    const [itemCounts, setItemCounts] = useState({});
+    const handleAddToCart = (item, action) => {
+        // Get the current count for the item (default to 0 if it doesn't exist)
+        const currentCount = itemCounts[item.id] || 0;
+      
+        // Calculate the new count based on the action (either +1 or -1)
+        const newCount = action === "increment" ? currentCount + 1 : Math.max(currentCount - 1, 0);
+      
+        // Update the counts in state
+        setItemCounts({
+          ...itemCounts,
+          [item.id]: newCount,
+        });
+      
+        // Dispatch the item to your Redux store with the new count
+        dispatch(addToCart({ item, count: newCount }));
+      };
+      
+//   const handleAddToCart = (item) => {
+//     dispatch(addToCart(item));
+//   };
     const [restaurantMenu,setRestaurantMenu] = useState([])
     const {id} = useParams()
     // const [restaurantMenu,setRestaurantMenu] = useState()
@@ -21,6 +46,12 @@ export default function RestaurantMenu(){
         .then(res => res.json())
         .then(data => setRestaurantMenu(data.data.cards))
     },[id])
+    const value = restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((outerArr)=>{
+        return outerArr
+   })
+   const newVal = value!==undefined? value.map((each)=>each?.card?.card?.itemCards):[]
+   const arrayofArray =  newVal.filter((each)=>each!==undefined)
+   console.log(arrayofArray)
     return(
         <>
          {
@@ -54,7 +85,7 @@ export default function RestaurantMenu(){
             <div className='d-flex gap-10 offer-container-parent'>
                 {
                 restaurantMenu[1].card.card.gridElements.infoWithStyle.offers.map((each)=>{
-                    return ( 
+                    return( 
                     <div className='offer-container'>
                     <div className='d-flex align-center gap-4'>
                             <img src={`https://media-assets.swiggy.com/swiggy/image/upload/fl_lossy,f_auto,q_auto,w_660/${each.info.offerLogo}`} alt="" width={20} height={20}/>
@@ -71,12 +102,12 @@ export default function RestaurantMenu(){
                 }
                 </div>
                 <div className='style-divider'></div>
-                <div className='main-dishes-container'>
+                <div className='main-dishes-container'> 
                     <div className='recommended' >
                         {
                         restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((each,index)=>{
                                 return( <>
-                                    {each?.card?.card?.itemCards?.length>0&&
+                                {each?.card?.card?.itemCards?.length>0&&
                                 <div key={each?.card?.card?.title}>
                                 <div className='d-flex justify-space-between' onClick={()=>toggleMenu(index)}>
                                     <div>
@@ -103,9 +134,13 @@ export default function RestaurantMenu(){
                                                 }
                                                 {
                                                     <div className={each?.card?.info?.imageId? 'menu-cart': 'menu-cart-no-img'}>
-                                                        <div className='d-flex flex-column justify-center align-center' style={{height:"100%",cursor:"pointer",borderRadius:"4px"}}>
-                                                            <p style={{color:" #60b246",fontWeight:"600",fontSize:"12px"}}>ADD</p>
-                                                            <div></div>
+                                                        <div className='d-flex flex-column justify-center align-center' style={{height:"100%",cursor:"pointer",borderRadius:"4px"}} onClick={() => handleAddToCart(each)}>
+                                                            <p style={{color:" #60b246",fontWeight:"600",fontSize:"12px" }}>ADD</p>
+                                                            <div className='d-flex justify-space-between align-center counter'>
+                                                                <p style={{color:"#696969"}} onClick={() => handleAddToCart(item, "decrement")}>-</p>
+                                                                <p style={{fontSize:"12px"}} onClick={() => handleAddToCart(item, "increment")}></p>
+                                                                <p>+</p>
+                                                            </div>
                                                         </div>
                                                     </div>   
                                                 }

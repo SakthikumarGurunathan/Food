@@ -310,6 +310,12 @@ p.hotel-details{
     border: 1px solid #d4d5d9;
     box-shadow: 0 3px 8px #e9e9eb;
 }
+.counter{
+    width: 80%;
+    color: rgb(96, 178, 70);
+    font-size: 18px;
+    font-weight: 600;
+}
 
 .style-divider{
     border-bottom: 0.5px solid #d3d3d3;
