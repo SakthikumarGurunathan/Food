@@ -3,7 +3,21 @@ import React from 'react'
 import { Link } from 'react-router-dom'
 import { useSelector } from 'react-redux';
 export default function Header(){
-    const cartItems = useSelector((state) => state.cart);
+    const cartItems = useSelector((state) => state.cart.items);
+    var count=0;
+    const countVal = cartItems.map((each)=>{
+        return {value:each, uniqueId:each.card.info.id,countVal:count}
+    })
+    // console.log(countVal,cartItems)
+    countVal.map((each)=> {
+      cartItems.forEach((eachItem,index)=>{
+        // console.log(eachItem.card.info.id)
+        if(each.uniqueId === eachItem.card.info.id ){
+            {each.countVal+=1}
+            countVal.splice(index,index)
+        }
+      })
+    })
     return(
         <nav>
             <ul className="nav-bar">
@@ -32,7 +46,7 @@ export default function Header(){
                     <Link to={'/cart'}>
                     <li className="nav-bar-item">
                     <svg class="_1GTCc _173fq" viewBox="-1 0 37 32" height="20" width="20" fill="#686b78"><path d="M4.438 0l-2.598 5.11-1.84 26.124h34.909l-1.906-26.124-2.597-5.11z"></path></svg>
-                        <p>Cart{cartItems.length}</p>
+                        <p>Cart{countVal.length}</p>
                     </li>
                     </Link>
                 </ul>

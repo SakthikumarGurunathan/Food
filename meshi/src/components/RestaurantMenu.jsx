@@ -7,28 +7,24 @@ import { addToCart } from '../cartSlice';
 
 export default function RestaurantMenu(){
     const dispatch = useDispatch();
-    const cartItems = useSelector((state) => state.cart);
-    const [itemCounts, setItemCounts] = useState({});
-    const handleAddToCart = (item, action) => {
-        // Get the current count for the item (default to 0 if it doesn't exist)
-        const currentCount = itemCounts[item.id] || 0;
-      
-        // Calculate the new count based on the action (either +1 or -1)
-        const newCount = action === "increment" ? currentCount + 1 : Math.max(currentCount - 1, 0);
-      
-        // Update the counts in state
-        setItemCounts({
-          ...itemCounts,
-          [item.id]: newCount,
-        });
-      
-        // Dispatch the item to your Redux store with the new count
-        dispatch(addToCart({ item, count: newCount }));
-      };
-      
-//   const handleAddToCart = (item) => {
-//     dispatch(addToCart(item));
-//   };
+  const handleAddToCart = (item) => {
+    dispatch(addToCart(item));
+  };
+  const cartItems = useSelector((state) => state.cart.items);
+  var count=0;
+  const countVal = cartItems.map((each)=>{
+      return {value:each, uniqueId:each.card.info.id,countVal:count}
+  })
+  countVal.map((each)=> {
+    cartItems.forEach((eachItem,index)=>{
+      // console.log(eachItem.card.info.id)
+      if(each.uniqueId === eachItem.card.info.id ){
+          {each.countVal+=1}
+          countVal.splice(index,index)
+      }
+    })
+  })
+//   console.log(countVal)
     const [restaurantMenu,setRestaurantMenu] = useState([])
     const {id} = useParams()
     // const [restaurantMenu,setRestaurantMenu] = useState()
@@ -51,7 +47,7 @@ export default function RestaurantMenu(){
    })
    const newVal = value!==undefined? value.map((each)=>each?.card?.card?.itemCards):[]
    const arrayofArray =  newVal.filter((each)=>each!==undefined)
-   console.log(arrayofArray)
+//    console.log(arrayofArray)
     return(
         <>
          {
@@ -134,12 +130,12 @@ export default function RestaurantMenu(){
                                                 }
                                                 {
                                                     <div className={each?.card?.info?.imageId? 'menu-cart': 'menu-cart-no-img'}>
-                                                        <div className='d-flex flex-column justify-center align-center' style={{height:"100%",cursor:"pointer",borderRadius:"4px"}} onClick={() => handleAddToCart(each)}>
+                                                        <div className='d-flex flex-column justify-center align-center' style={{height:"100%",cursor:"pointer",borderRadius:"4px"}}>
                                                             <p style={{color:" #60b246",fontWeight:"600",fontSize:"12px" }}>ADD</p>
                                                             <div className='d-flex justify-space-between align-center counter'>
-                                                                <p style={{color:"#696969"}} onClick={() => handleAddToCart(item, "decrement")}>-</p>
-                                                                <p style={{fontSize:"12px"}} onClick={() => handleAddToCart(item, "increment")}></p>
-                                                                <p>+</p>
+                                                                <p style={{color:"#696969"}}>-</p>
+                                                                <p style={{fontSize:"12px"}} ></p>
+                                                                <p onClick={() => handleAddToCart(each)}>+</p>
                                                             </div>
                                                         </div>
                                                     </div>   
