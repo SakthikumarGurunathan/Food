@@ -10,24 +10,43 @@ const Cart = () => {
       return {value:each, uniqueId:each.card.info.id,countVal:count}
   })
   // console.log(cartItems,"CartItems")
-  console.log(countVal,"before")
+  // console.log(countVal,"before")
   countVal.map((each,index1)=> {
     cartItems.forEach((eachItem,index)=>{
       // console.log(eachItem.card.info.id)
       if(each.uniqueId == eachItem.card.info.id){
           {each.countVal+=1}
           if(index>0){
-            console.log(countVal.splice(index1+1,1))
+            // console.log(countVal.splice(index1+1,1))
           }
-          console.log(index)
+          // console.log(index)
       }
       else{
-        console.log("Hii")
+        // console.log("Hii")
       }
     })
   })
+  function removeDuplicates(array, key) {
+    const uniqueArray = [];
+    const seen = new Set();
   
-console.log(countVal,"countVal")
+    for (const item of array) {
+      const keyValue = key ? item[key] : JSON.stringify(item);
+  
+      if (!seen.has(keyValue)) {
+        seen.add(keyValue);
+        uniqueArray.push(item);
+      }
+    }
+  
+    return uniqueArray;
+  }
+
+  const uniqueArray = removeDuplicates(countVal, countVal.uniqueId);
+console.log(uniqueArray);
+
+  
+// console.log(countVal,"countVal")
 // Helper function to calculate the total price of items in the cart
 //   const calculateTotal = () => {
 //     return cartItems.reduce((total, item) => total + item.price, 0);
@@ -37,7 +56,7 @@ console.log(countVal,"countVal")
     <div className="cart d-flex flex-column justify-center" >
       <h2>Shopping Cart</h2>
       {
-        countVal.map((each)=>{
+        uniqueArray.map((each)=>{
           return(
                 <div style={{border:"1px solid #696969",padding:"16px",margin:"16px",width:"80%",margin:"0 auto",marginBottom:"14px",marginTop:"14px"}} className='d-flex'>
                   <div key={each.uniqueId} className='d-flex' style={{width:"100%"}}>
