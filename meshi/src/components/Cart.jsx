@@ -21,9 +21,6 @@ const Cart = () => {
           }
           // console.log(index)
       }
-      else{
-        // console.log("Hii")
-      }
     })
   })
   function removeDuplicates(array, key) {
@@ -42,16 +39,15 @@ const Cart = () => {
     return uniqueArray;
   }
 
-  const uniqueArray = removeDuplicates(countVal, countVal.uniqueId);
-console.log(uniqueArray);
-
-  
-// console.log(countVal,"countVal")
-// Helper function to calculate the total price of items in the cart
-//   const calculateTotal = () => {
-//     return cartItems.reduce((total, item) => total + item.price, 0);
-//   };
-
+const uniqueArray = removeDuplicates(countVal, countVal.uniqueId);
+// 
+const totalSum=0
+uniqueArray.forEach((each)=>{
+  totalSum+= each.value.card.info.price/100
+  // console.log(totalSum+(each.value.card.info.price/100))
+  // console.log(typeof(each.value.card.info.price/100))
+  // console.log(typeof(totalSum))
+})
   return (
     <div className="cart d-flex flex-column justify-center" >
       <h2>Shopping Cart</h2>
