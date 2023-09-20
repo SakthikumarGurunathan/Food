@@ -41,13 +41,13 @@ const Cart = () => {
 
 const uniqueArray = removeDuplicates(countVal, countVal.uniqueId);
 // 
-const totalSum=0
-uniqueArray.forEach((each)=>{
-  totalSum+= each.value.card.info.price/100
-  // console.log(totalSum+(each.value.card.info.price/100))
-  // console.log(typeof(each.value.card.info.price/100))
-  // console.log(typeof(totalSum))
-})
+// const totalSum=0
+// uniqueArray.forEach((each)=>{
+//   totalSum+= each.value.card.info.price/100
+//   // console.log(totalSum+(each.value.card.info.price/100))
+//   // console.log(typeof(each.value.card.info.price/100))
+//   // console.log(typeof(totalSum))
+// })
   return (
     <div className="cart d-flex flex-column justify-center" >
       <h2>Shopping Cart</h2>
