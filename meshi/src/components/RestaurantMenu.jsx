@@ -8,7 +8,7 @@ import { addToCart } from '../cartSlice';
 export default function RestaurantMenu(){
     const dispatch = useDispatch();
   const handleAddToCart = (item) => {
-    dispatch(addToCart(item));
+    dispatch(addToCart(item))
   };
   const cartItems = useSelector((state) => state.cart.items);
   var count=0;
@@ -43,7 +43,7 @@ export default function RestaurantMenu(){
         .then(data => setRestaurantMenu(data.data.cards))
     },[id])
     const value = restaurantMenu[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.map((outerArr)=>{
-        return outerArr
+        return outerArr 
    })
    const newVal = value!==undefined? value.map((each)=>each?.card?.card?.itemCards):[]
    const arrayofArray =  newVal.filter((each)=>each!==undefined)
